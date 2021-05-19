@@ -26,21 +26,21 @@
 
 // Route::post('/sapa', 'RegisterController@sapa_post');
 
-Route::get('/', 'HomeController@home');
+// Route::get('/', 'HomeController@home');
 
 // Route::post('/Register', 'AuthController@register');
 
-Route::get('/Register', 'AuthController@register');
+// Route::get('/Register', 'AuthController@register');
 
 // Route::get('/Welcome', 'AuthController@welcome');
 
-Route::post('/Welcome', 'AuthController@welcome');
+// Route::post('/Welcome', 'AuthController@welcome');
 
 // Route::get('/master', function() {
 //     return view('/layout/master');
 // });
 
-Route::get('/table', function() {
+Route::get('/', function() {
     return view('/table.table');
 });
 
