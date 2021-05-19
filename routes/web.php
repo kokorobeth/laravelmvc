@@ -35,3 +35,15 @@ Route::get('/Register', 'AuthController@register');
 // Route::get('/Welcome', 'AuthController@welcome');
 
 Route::post('/Welcome', 'AuthController@welcome');
+
+// Route::get('/master', function() {
+//     return view('/layout/master');
+// });
+
+Route::get('/table', function() {
+    return view('/table.table');
+});
+
+Route::get('/data-table', function() {
+    return view('/table.data-table');
+});
