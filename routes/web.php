@@ -40,7 +40,7 @@
 //     return view('/layout/master');
 // });
 
-Route::get('/', function() {
+Route::get('/table', function() {
     return view('/table.table');
 });
 
