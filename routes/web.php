@@ -47,3 +47,21 @@ Route::get('/table', function() {
 Route::get('/data-table', function() {
     return view('/table.data-table');
 });
+
+//CRUD genre
+Route::get('/genre', 'GenreController@index');
+Route::get('/genre/create', 'GenreController@create');
+Route::post('/genre', 'GenreController@store');
+Route::get('/genre/{genre_id}', 'GenreController@show');
+Route::get('/genre/{genre_id}/edit', 'GenreController@edit');
+Route::put('/genre/{genre_id}', 'GenreController@update');
+Route::delete('/genre/{genre_id}', 'GenreController@destroy');
+
+//CRUD cast
+Route::get('/cast', 'CastController@index');
+Route::get('/cast/create', 'CastController@create');
+Route::post('/cast', 'CastController@store');
+Route::get('/cast/{cast_id}', 'castController@show');
+Route::get('/cast/{cast_id}/edit', 'CastController@edit');
+Route::put('/cast/{cast_id}', 'CastController@update');
+Route::delete('/cast/{cast_id}', 'CastController@destroy');
