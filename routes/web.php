@@ -11,9 +11,9 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
 
 // Route::get('/test/{angka}', function($angka) {
@@ -65,3 +65,7 @@ Route::get('/cast/{cast_id}', 'castController@show');
 Route::get('/cast/{cast_id}/edit', 'CastController@edit');
 Route::put('/cast/{cast_id}', 'CastController@update');
 Route::delete('/cast/{cast_id}', 'CastController@destroy');
+
+Route::get('/profil', 'ProfilController@index');
+Route::get('/profil/create', 'ProfilController@create');
+Route::post('/profil', 'ProfilController@store');
