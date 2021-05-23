@@ -23,7 +23,7 @@ class ProfilController extends Controller
             "umur" => $request["umur"],
             "bio" => $request["bio"],
             "alamat" => $request["alamat"],
-            // "user_id" => $request["user_id"]
+            "user_id" => $request["user_id"]
         ]);
         return redirect('/profil');
     }
