@@ -19,8 +19,6 @@ class CreateFilmTable extends Migration
             $table->text('ringkasan');
             $table->integer('tahun');
             $table->string('poster');
-            $table->unsignedBigInteger('genre_id');
-            $table->foreign('genre_id')->references('genre_id')->on('genre');
             $table->timestamps();
         });
     }
