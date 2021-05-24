@@ -41,13 +41,14 @@ Route::get('/', function () {
 // });
 
 //CRUD post
-Route::get('/posts', 'PostController@index');
-Route::get('/posts/create', 'PostController@create');
-Route::post('/posts', 'PostController@store');
-Route::get('/posts/{post_id}', 'PostController@show');
-Route::get('/posts/{post_id}/edit', 'PostController@edit');
-Route::put('/posts/{post_id}', 'PostController@update');
-Route::delete('/posts/{post_id}', 'PostController@destroy');
+Route::resource('post', 'PostController');
+// Route::get('/post', 'PostController@index');
+// Route::get('/post/create', 'PostController@create');
+// Route::post('/post', 'PostController@store');
+// Route::get('/post/{post_id}', 'PostController@show');
+// Route::get('/post/{post_id}/edit', 'PostController@edit');
+// Route::put('/post/{post_id}', 'PostController@update');
+// Route::delete('/post/{post_id}', 'PostController@destroy');
 
 Route::get('/table', function() {
     return view('/table.table');
@@ -66,15 +67,6 @@ Route::get('/genre/{genre_id}/edit', 'GenreController@edit');
 Route::put('/genre/{genre_id}', 'GenreController@update');
 Route::delete('/genre/{genre_id}', 'GenreController@destroy');
 
-//CRUD cast
-Route::get('/cast', 'CastController@index');
-Route::get('/cast/create', 'CastController@create');
-Route::post('/cast', 'CastController@store');
-Route::get('/cast/{cast_id}', 'castController@show');
-Route::get('/cast/{cast_id}/edit', 'CastController@edit');
-Route::put('/cast/{cast_id}', 'CastController@update');
-Route::delete('/cast/{cast_id}', 'CastController@destroy');
-
 Route::get('/profil', 'ProfilController@index');
 Route::get('/profil/create', 'ProfilController@create');
 Route::post('/profil', 'ProfilController@store');
@@ -84,3 +76,15 @@ Route::get('/users/create', 'UserController@create');
 Route::post('/users', 'UserController@store');
 Route::get('/users/{users_id}', 'UserController@show');
 
+//CRUD Film
+Route::resource('film', 'FilmController');
+
+//CRUD cast
+Route::resource('cast', 'CastController');
+// Route::get('/cast', 'CastController@index');
+// Route::get('/cast/create', 'CastController@create');
+// Route::post('/cast', 'CastController@store');
+// Route::get('/cast/{cast_id}', 'castController@show');
+// Route::get('/cast/{cast_id}/edit', 'CastController@edit');
+// Route::put('/cast/{cast_id}', 'CastController@update');
+// Route::delete('/cast/{cast_id}', 'CastController@destroy');

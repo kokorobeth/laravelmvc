@@ -9,7 +9,7 @@
 
 <div>
     <h2>Tambah Data</h2>
-        <form action="/posts" method="POST">
+        <form action="/post" method="POST">
             @csrf
             <div class="form-group">
                 <label for="title">Title</label>
@@ -29,7 +29,7 @@
                     </div>
                 @enderror
             </div>
-            <button type="submit" class="btn btn-primary">Tambah</button>
+            <button type="submit" class="btn btn-primary">Create</button>
         </form>
 </div>
 
