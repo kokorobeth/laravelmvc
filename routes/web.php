@@ -40,6 +40,15 @@ Route::get('/', function () {
 //     return view('/layout/master');
 // });
 
+//CRUD post
+Route::get('/post', 'PostController@index');
+Route::get('/post/create', 'PostController@create');
+Route::post('/post', 'PostController@store');
+Route::get('/post/{post_id}', 'PostController@show');
+Route::get('/post/{post_id}/edit', 'PostController@edit');
+Route::put('/post/{post_id}', 'PostController@update');
+Route::delete('/post/{post_id}', 'PostController@destroy');
+
 Route::get('/table', function() {
     return view('/table.table');
 });
@@ -69,3 +78,9 @@ Route::delete('/cast/{cast_id}', 'CastController@destroy');
 Route::get('/profil', 'ProfilController@index');
 Route::get('/profil/create', 'ProfilController@create');
 Route::post('/profil', 'ProfilController@store');
+
+Route::get('/users', 'UserController@index');
+Route::get('/users/create', 'UserController@create');
+Route::post('/users', 'UserController@store');
+Route::get('/users/{users_id}', 'UserController@show');
+
