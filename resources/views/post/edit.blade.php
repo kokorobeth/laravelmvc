@@ -1,13 +1,6 @@
-@extends('layout.master')
-
-@section('title')
-    Tambah Cast
-@endsection
-
-@section('content')
 <div>
     <h2>Edit Post {{$post->id}}</h2>
-    <form action="/post/{{$post->id}}" method="POST">
+    <form action="/posts/{{$post->id}}" method="POST">
         @csrf
         @method('PUT')
         <div class="form-group">
@@ -31,4 +24,3 @@
         <button type="submit" class="btn btn-primary">Edit</button>
     </form>
 </div>
-@endsection

@@ -9,7 +9,7 @@
 
 <div>
     <h2>Tambah Data</h2>
-        <form action="/post" method="POST">
+        <form action="/posts" method="POST">
             @csrf
             <div class="form-group">
                 <label for="title">Title</label>

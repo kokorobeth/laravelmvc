@@ -41,13 +41,13 @@ Route::get('/', function () {
 // });
 
 //CRUD post
-Route::get('/post', 'PostController@index');
-Route::get('/post/create', 'PostController@create');
-Route::post('/post', 'PostController@store');
-Route::get('/post/{post_id}', 'PostController@show');
-Route::get('/post/{post_id}/edit', 'PostController@edit');
-Route::put('/post/{post_id}', 'PostController@update');
-Route::delete('/post/{post_id}', 'PostController@destroy');
+Route::get('/posts', 'PostController@index');
+Route::get('/posts/create', 'PostController@create');
+Route::post('/posts', 'PostController@store');
+Route::get('/posts/{post_id}', 'PostController@show');
+Route::get('/posts/{post_id}/edit', 'PostController@edit');
+Route::put('/posts/{post_id}', 'PostController@update');
+Route::delete('/posts/{post_id}', 'PostController@destroy');
 
 Route::get('/table', function() {
     return view('/table.table');

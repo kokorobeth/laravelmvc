@@ -32,7 +32,7 @@ class PostController extends Controller
             'title' => $request["title"],
             'body' => $request["body"]
         ]);
-        return redirect('/post')->with('Success', 'Post berhasil disimpan');
+        return redirect('/posts')->with('Success', 'Post berhasil disimpan');
     }
 
     public function index()
@@ -61,38 +61,17 @@ class PostController extends Controller
             'body' => 'required',
         ]);
 
-        $post = post::find($id);
-        $post->title = $request->title;
-        $post->body = $request->body;
-        $post->update();
-        return redirect('/post');
-    }
-
-    public function edit($id)
-    {
         $post = Post::find($id);
-        return view('post.edit', compact('post'));
-    }
-
-    public function update($id, Request $request)
-    {
-        $request->validate([
-            'title' => 'required|unique:post',
-            'body' => 'required',
-        ]);
-
-        $post = post::find($id);
         $post->title = $request->title;
         $post->body = $request->body;
         $post->update();
-        return redirect('/post');
+        return redirect('/posts');
     }
 
-    
     public function destroy($id)
     {
         $post = Post::find($id);
         $post->delete();
-        return redirect('/post');
+        return redirect('/posts');
     }
 }
