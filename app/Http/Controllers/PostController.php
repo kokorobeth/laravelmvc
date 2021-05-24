@@ -44,32 +44,55 @@ class PostController extends Controller
 
     public function show($id)
     {
-        $post = DB::table('post')->where('id', $id)->first();
+        $post = Post::find($id);
         return view('post.show', compact('post'));
     }
 
     public function edit($id)
     {
-        $post = DB::table('post')->where('id', $id)->first();
+        $post = Post::find($id);
         return view('post.edit', compact('post'));
     }
 
-    public function update(Request $request, $id) {
+    public function update($id, Request $request)
+    {
         $request->validate([
-            'nama' => 'required',
-            'umur' => 'required',
-            'bio' => 'required'
+            'title' => 'required|unique:post',
+            'body' => 'required',
         ]);
-        $query = DB::table('post')->where('id', $id)->update([
-            'nama' => $request['nama'],
-            'umur' => $request['umur'],
-            'bio' => $request['bio']
-        ]);
+
+        $post = post::find($id);
+        $post->title = $request->title;
+        $post->body = $request->body;
+        $post->update();
         return redirect('/post');
     }
 
-    public function destroy($id) {
-        $query = DB::table('post')->where('id', $id)->delete();
+    public function edit($id)
+    {
+        $post = Post::find($id);
+        return view('post.edit', compact('post'));
+    }
+
+    public function update($id, Request $request)
+    {
+        $request->validate([
+            'title' => 'required|unique:post',
+            'body' => 'required',
+        ]);
+
+        $post = post::find($id);
+        $post->title = $request->title;
+        $post->body = $request->body;
+        $post->update();
+        return redirect('/post');
+    }
+
+    
+    public function destroy($id)
+    {
+        $post = Post::find($id);
+        $post->delete();
         return redirect('/post');
     }
 }
