@@ -5,41 +5,26 @@
 @endsection
 
 @section('content')
-    <a href="{{route('film.create')}}" class="btn btn-primary my-2">Tambah</a>
-    <table class="table">
-        <thead class="thead-light">
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Judul</th>
-            <th scope="col">Ringkasan</th>
-            <th scope="col">Tahun</th>
-            <th scope="col">Poster</th>
-            <th scope="col">Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-            @forelse ($film as $key=>$value)
-                <tr>
-                    <td>{{$key + 1}}</th>
-                    <td>{{$value->judul}}</td>
-                    <td>{{$value->ringkasan}}</td>
-                    <td>{{$value->tahun}}</td>
-                    <td>{{$value->poster}}</td>
-                    <td>
-                        <form action="/film/{{$value->id}}" method="POST">
-                            <a href="/film/{{$value->id}}" class="btn btn-info">Show</a>
-                            <a href="/film/{{$value->id}}/edit" class="btn btn-primary">Edit</a>
-                            @csrf
-                            @method('DELETE')
-                            <input type="submit" class="btn btn-danger my-1" value="Delete">
-                        </form>
-                    </td>
-                </tr>
-            @empty
-                <tr colspan="3">
-                    <td>No data</td>
-                </tr>  
-            @endforelse              
-        </tbody>
-    </table>
+    <a href="{{route('film.create')}}" class="btn btn-primary my-4">Tambah List Film</a>
+    <div class="row">
+        @foreach ($film as $value)
+        <div class="col-4">
+            <div class="card" style="width: 18rem;">
+                <img src="{{asset('img/'.$value->poster)}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{$value->judul}}</h5>
+                  <p class="card-text">{{$value->ringkasan}}</p>
+                  <form action="/film/{{$value->id}}" method="POST">
+                    <a href="/film/{{$value->id}}" class="btn btn-info">Show</a>
+                    <a href="/film/{{$value->id}}/edit" class="btn btn-primary">Edit</a>
+                    @csrf
+                    @method('DELETE')
+                    <input type="submit" class="btn btn-danger my-1" value="Delete">
+                </form>
+                </div>
+              </div>
+        </div>
+        @endforeach
+    </div>
+    
 @endsection

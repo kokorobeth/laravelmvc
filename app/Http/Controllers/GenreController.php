@@ -21,7 +21,10 @@ class GenreController extends Controller
         // $query = DB::table('genre')->insert([
         //     "nama" => $request["nama"]
         // ]);
-        $genre = Genre::create();
+        $genre = Genre::create([
+            "nama" => $request['nama']
+        ]);
+        
         return redirect('/genre');
     }
     

@@ -35,18 +35,23 @@
                     </div>
                 @enderror
             </div>
-            {{-- <div class="form-group">
-                <label for="genre">Genre</label>
-                <select name="genre" id="">
+            <div class="form-group">
+                <label for="genre_id">Genre</label>
+                <select name="genre_id" id="" class="form-control">
                     <option value="">-</option>
                     @foreach ($genres as $value)
                         <option value="{{$value->id}}">{{$value->nama}}</option>
                     @endforeach
                 </select>
-            </div> --}}
+                @error('genre_id')
+                    <div class="alert alert-danger">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
             <div class="form-group">
                 <label for="poster">Poster</label>
-                <input type="file" class="form-control" name="poster" id="poster" placeholder="Masukkan Poster">
+                <input type="file" class="form-control" name="poster" id="poster">
                 @error('poster')
                     <div class="alert alert-danger">
                         {{ $message }}

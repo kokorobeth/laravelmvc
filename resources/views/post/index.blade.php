@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <a href="{{route('post.create')}}" class="btn btn-primary my-2">Tambah</a>
+    <a href="{{route('post.create')}}" class="btn btn-primary my-2">Create New Post</a>
     <table class="table">
         <thead class="thead-light">
         <tr>
@@ -16,15 +16,15 @@
         </tr>
         </thead>
         <tbody>
-            @forelse ($post as $key=>$post)
+            @forelse ($post as $key=>$value)
                 <tr>
                     <td>{{$key + 1}}</th>
-                    <td>{{$post->title}}</td>
-                    <td>{{$post->body}}</td>
+                    <td>{{$value->title}}</td>
+                    <td>{{$value->body}}</td>
                     <td>
-                        <form action="{{$post->id}}" method="POST">
-                            <a href="{{route('post.show', ['post' => $post->id])}}" class="btn btn-info">Show</a>
-                            <a href="{{route('post.edit')}}/edit" class="btn btn-primary">Edit</a>
+                        <form action="post/{{$value->id}}" method="POST">
+                            <a href="{{ route('post.show', ['post' => $post->id])}}" class="btn btn-info">Show</a>
+                            <a href="post/{{$value->id}}/edit" class="btn btn-primary">Edit</a>
                             @csrf
                             @method('DELETE')
                             <input type="submit" class="btn btn-danger my-1" value="Delete">

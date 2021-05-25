@@ -61,13 +61,13 @@ class PostController extends Controller
         //     'body' => 'required',
         // ]);
 
-        $post = Post::where('id'. $id)->update([
+        $post = Post::where('id', $id)->update([
             "title" => $request['title'],
             "body"=> $request['body']
         ]);
-        $post->title = $request->title;
-        $post->body = $request->body;
-        $post->update();
+        // $post->title = $request->title;
+        // $post->body = $request->body;
+        // $post->update();
         return redirect('/post');
     }
 

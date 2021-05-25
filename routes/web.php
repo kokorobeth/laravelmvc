@@ -59,17 +59,19 @@ Route::get('/data-table', function() {
 });
 
 //CRUD genre
-Route::get('/genre', 'GenreController@index');
-Route::get('/genre/create', 'GenreController@create');
-Route::post('/genre', 'GenreController@store');
-Route::get('/genre/{genre_id}', 'GenreController@show');
-Route::get('/genre/{genre_id}/edit', 'GenreController@edit');
-Route::put('/genre/{genre_id}', 'GenreController@update');
-Route::delete('/genre/{genre_id}', 'GenreController@destroy');
+Route::resource('genre', 'GenreController')->except(['show']);
+// Route::get('/genre', 'GenreController@index');
+// Route::get('/genre/create', 'GenreController@create');
+// Route::post('/genre', 'GenreController@store');
+// Route::get('/genre/{genre_id}', 'GenreController@show');
+// Route::get('/genre/{genre_id}/edit', 'GenreController@edit');
+// Route::put('/genre/{genre_id}', 'GenreController@update');
+// Route::delete('/genre/{genre_id}', 'GenreController@destroy');
 
 Route::get('/profil', 'ProfilController@index');
 Route::get('/profil/create', 'ProfilController@create');
 Route::post('/profil', 'ProfilController@store');
+
 
 Route::get('/users', 'UserController@index');
 Route::get('/users/create', 'UserController@create');

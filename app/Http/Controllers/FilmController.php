@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Genre;
 use App\Film;
+use File;
 
 class FilmController extends Controller
 {
     public function create()
     {   
-        $genres = genre::all();
+        $genres = Genre::all();
         return view('film.create', compact('genres'));
     }
 
@@ -20,7 +21,7 @@ class FilmController extends Controller
             'judul' => 'required|unique:film',
             'ringkasan' => 'required',
             'tahun' => 'required',
-            'poster' => 'required|mimes::jpeg,jpg,png',
+            'poster' => 'required|mimes:jpeg,jpg,png',
             'genre_id' => 'required'
         ]);
 
@@ -31,11 +32,11 @@ class FilmController extends Controller
             'judul' => $request->judul,
             'ringkasan' => $request->ringkasan,
             'tahun' => $request->tahun,
-            'poster' => $request->$name_img,
-            'genre_id' => $request->genre_id
+            'genre_id' => $request->genre_id,
+            'poster' => $name_img
         ]);
 
-        $gambar->move('/img', $name_img);
+        $gambar->move('img', $name_img);
         return redirect('/film');
     }
 
@@ -54,23 +55,60 @@ class FilmController extends Controller
 
     public function edit($id)
     {
-        $film = Film::find($id);
-        return view('film.edit', compact('film'));
+        $genre = Genre::all();
+        $film = Film::findorfail($id);
+        return view('film.edit', compact('film', 'genre'));
     }
 
-    public function update($id, Request $request) {
-        $film = Film::where('id',  $id)->update([
-            "judul" => $request['judul'],
-            "ringkasan" => $request['ringkasan'],
-            "tahun" => $request['tahun'],
-            "poster" => $request['poster'],
-            "genre_id" => $request['genre_id']
+    public function update(Request $request, $id) {
+        // $this->validate($request, [
+        //     'judul' => 'required',
+        //     'tahun' => 'required',
+        //     'genre_id' => 'required',
+        //     'ringkasan' => 'required',
+        //     'poster' => 'required|mimes:jpeg,png,jpg'
+        // ]);
+        $request->validate([
+            'judul' => 'required',
+            'ringkasan' => 'required',
+            'tahun' => 'required',
+            'poster' => 'required|mimes:jpeg,jpg,png',
+            'genre_id' => 'required'
         ]);
+
+        $film = Film::findorfail($id);
+
+        if($request->has('poster')) {
+            $path = "/film";
+            File::delete($path . $film->poster);
+            $gambar = $request->poster;
+            $new_gambar = time() . ' - ' . $gambar->getClientOriginalName();
+            $gambar->move('img', $new_gambar);
+            $film_data = [
+                'judul' => $request->judul,
+                'ringkasan' => $request->ringkasan,
+                'tahun' => $request->tahun,
+                'genre_id' => $request->genre_id,
+                'poster' => $new_gambar
+            ];
+        } else {
+            $film_data = [
+                'judul' => $request->judul,
+                'ringkasan' => $request->ringkasan,
+                'tahun' => $request->tahun,
+                'genre_id' => $request->genre_id
+            ];
+        }
+        $film->update($film_data);
         return redirect('/film');
     }
 
     public function destroy($id) {
-        $film = Film::destroy($id);
-        return redirect('/film');
+        $film = Film::findorfail($id);
+        $film->delete();
+
+        $path = "img/";
+        File::delete($path . $film->poster);
+        return redirect()->route('film.index')->with('Success', 'Poster Berhasil dihapus');
     }
 }
