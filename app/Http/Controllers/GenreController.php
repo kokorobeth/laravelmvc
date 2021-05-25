@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use App\Genre;
 
 class GenreController extends Controller
 {
@@ -17,42 +18,51 @@ class GenreController extends Controller
         $request->validate([
             'nama' => 'required|unique:genre'
         ]);
-        $query = DB::table('genre')->insert([
-            "nama" => $request["nama"]
-        ]);
+        // $query = DB::table('genre')->insert([
+        //     "nama" => $request["nama"]
+        // ]);
+        $genre = Genre::create();
         return redirect('/genre');
     }
     
   public function index()
   {
-      $genre = DB::table('genre')->get();
+    //   $genre = DB::table('genre')->get();
+      $genre = Genre::all();
       return view('genre.index', compact('genre'));
   }
 
   public function show($id)
     {
-        $genre = DB::table('genre')->where('id', $id)->first();
+        // $genre = DB::table('genre')->where('id', $id)->first();
+        $genre = Genre::find($id);
         return view('genre.show', compact('genre'));
     }
 
     public function edit($id)
     {
-        $genre = DB::table('genre')->where('id', $id)->first();
+        // $genre = DB::table('genre')->where('id', $id)->first();
+        $genre = Genre::find($id);
         return view('genre.edit', compact('genre'));
     }
 
-    public function update(Request $request, $id) {
-        $request->validate([
-            'nama' => 'required',
-        ]);
-        $query = DB::table('genre')->where('id', $id)->update([
-            'nama' => $request['nama'],
+    public function update($id, Request $request) {
+        // $request->validate([
+        //     'nama' => 'required|unique:genre'
+        // ]);
+        // $query = DB::table('genre')->where('id', $id)->update([
+        //     'nama' => $request['nama'],
+        // ]);
+
+        $genre = Genre::where('id', $id)->update([
+            "nama" => $request['nama']
         ]);
         return redirect('/genre');
     }
 
     public function destroy($id) {
-        $query = DB::table('genre')->where('id', $id)->delete();
+        // $query = DB::table('genre')->where('id', $id)->delete();
+        $genre = Genre::destroy($id);
         return redirect('/genre');
     }
 }

@@ -78,6 +78,13 @@ Route::get('/users/{users_id}', 'UserController@show');
 
 //CRUD Film
 Route::resource('film', 'FilmController');
+// Route::get('/film', 'FilmController@index');
+// Route::get('/film/create', 'FilmController@create');
+// Route::post('/film', 'FilmController@store');
+// Route::get('/film/{film_id}', 'FilmController@show');
+// Route::get('/film/{film_id}/edit', 'FilmController@edit');
+// Route::put('/film/{film_id}', 'FilmController@update');
+// Route::delete('/film/{film_id}', 'FilmController@destroy');
 
 //CRUD cast
 Route::resource('cast', 'CastController');

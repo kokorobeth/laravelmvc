@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Genre;
 use App\Film;
 
 class FilmController extends Controller
 {
     public function create()
-    {
-        return view('film.create');
+    {   
+        $genres = genre::all();
+        return view('film.create', compact('genres'));
     }
 
     public function store(Request $request)
@@ -18,21 +20,28 @@ class FilmController extends Controller
             'judul' => 'required|unique:film',
             'ringkasan' => 'required',
             'tahun' => 'required',
-            'poster' => 'required',
+            'poster' => 'required|mimes::jpeg,jpg,png',
             'genre_id' => 'required'
         ]);
+
+        $gambar = $request->poster;
+        $name_img = time(). ' - '. $gambar->getClientOriginalName();
+
         $film = Film::create([
-            'judul' => $request['judul'],
-            'ringkasan' => $request['ringkasan'],
-            'tahun' => $request['tahun'],
-            'poster' => $request['poster'],
-            'genre_id' => $request['genre_id']
+            'judul' => $request->judul,
+            'ringkasan' => $request->ringkasan,
+            'tahun' => $request->tahun,
+            'poster' => $request->$name_img,
+            'genre_id' => $request->genre_id
         ]);
+
+        $gambar->move('/img', $name_img);
         return redirect('/film');
     }
 
     public function index()
     {
+        // $genres = Genre::all();
         $film = Film::all();
         return view('film.index', compact('film'));
     }
