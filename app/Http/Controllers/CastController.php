@@ -8,6 +8,10 @@ use App\Cast;
 
 class CastController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth')->except(['index
+        ']);
+    }
     public function create()
     {
         return view('cast.create');

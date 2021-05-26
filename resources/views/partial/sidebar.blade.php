@@ -16,7 +16,7 @@
           <img src="{{asset('admin/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">{{ Auth::user()->name }}</a>
         </div>
       </div>
 
@@ -44,6 +44,16 @@
                 {{-- <span class="right badge badge-danger">New</span> --}}
               </p>
             </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('logout')}}"
+              onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">
+                {{__('Logout')}}
+            </a>
+            <form action="logout-form" action="{{route('logout')}}" method="POST" style="display: none;">
+              @csrf
+            </form>
           </li>
           
         </ul>
