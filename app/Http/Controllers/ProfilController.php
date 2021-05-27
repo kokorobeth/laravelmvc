@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\Profil;
+use App\User;
 
 class ProfilController extends Controller
 {
@@ -34,5 +35,33 @@ class ProfilController extends Controller
         // $profil = DB::table('profil')->get();
         $profil = Profil::all();
         return view('profil.index', compact('profil'));
+    }
+
+    public function show($id)
+    {
+        // $profil = DB::table('profil')->where('id', $id)->first();
+        $profil = Profil::find($id);
+        return view('profil.show', compact('profil'));
+    }
+
+    public function edit($id)
+    {
+        $profil = Profil::find($id);
+        return view('profil.edit', compact('profil'));
+    }
+
+    public function update($id, Request $request) {
+        $profil = Profil::where('id',  $id)->update([
+            "umur" => $request['umur'],
+            "bio" => $request['bio'],
+            "alamat" => $request['alamat']
+        ]);
+        return redirect('/profil');
+    }
+
+    public function destroy($id) {
+        // $query = DB::table('profil')->where('id', $id)->delete();
+        $profil = Profil::destroy($id);
+        return redirect('/profil');
     }
 }
