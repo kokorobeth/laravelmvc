@@ -23,7 +23,7 @@
                     <td>{{$value->body}}</td>
                     <td>
                         <form action="post/{{$value->id}}" method="POST">
-                            <a href="{{ route('post.show', ['post' => $post->id])}}" class="btn btn-info">Show</a>
+                            <a href="post/{{$value->id}}" class="btn btn-info">Show</a>
                             <a href="post/{{$value->id}}/edit" class="btn btn-primary">Edit</a>
                             @csrf
                             @method('DELETE')

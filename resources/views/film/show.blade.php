@@ -1,7 +1,7 @@
 @extends('layout.master')
 
 @section('title2')
-    Show Genre Id : {{$cast->id}}
+    Show Genre Id : {{$film->id}}
 @endsection
 
 @section('content')

@@ -69,15 +69,17 @@ Route::group(['middleware' => ['auth']], function() {
     // Route::put('/genre/{genre_id}', 'GenreController@update');
     // Route::delete('/genre/{genre_id}', 'GenreController@destroy');
     
-    Route::get('/profil', 'ProfilController@index');
-    Route::get('/profil/create', 'ProfilController@create');
-    Route::post('/profil', 'ProfilController@store');
+    //CRUD profil
+    Route::resource('profil', 'ProfilController');
+    // Route::get('/profil', 'ProfilController@index');
+    // Route::get('/profil/create', 'ProfilController@create');
+    // Route::post('/profil', 'ProfilController@store');
     
-    
-    Route::get('/users', 'UserController@index');
-    Route::get('/users/create', 'UserController@create');
-    Route::post('/users', 'UserController@store');
-    Route::get('/users/{users_id}', 'UserController@show');
+    Route::resource('user', 'UserController');
+    // Route::get('/users', 'UserController@index');
+    // Route::get('/users/create', 'UserController@create');
+    // Route::post('/users', 'UserController@store');
+    // Route::get('/users/{users_id}', 'UserController@show');
     
     //CRUD Film
     Route::resource('film', 'FilmController');

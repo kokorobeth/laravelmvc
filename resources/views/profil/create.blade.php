@@ -38,7 +38,7 @@
                     </div>
                 @enderror
             </div>
-            {{-- <div class="form-group">
+            <div class="form-group">
                 <label for="user_id">User Id</label>
                 <input type="text" class="form-control" name="user_id" id="user_id" placeholder="Masukkan user_id">
                 @error('user_id')
@@ -46,7 +46,7 @@
                         {{ $message }}
                     </div>
                 @enderror
-            </div> --}}
+            </div>
             <button type="submit" class="btn btn-primary">Tambah</button>
         </form>
 </div>

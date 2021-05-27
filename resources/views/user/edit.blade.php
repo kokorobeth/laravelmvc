@@ -1,33 +1,33 @@
 @extends('layout.master')
 
 @section('title')
-    Edit Cast
+    Edit User
 @endsection
 
 @section('content')
 <div>
     <h2>Tambah Data</h2>
-        <form action="/cast/{{$cast->id}}" method="POST">
+        <form action="/user/{{$user->id}}" method="POST">
             @csrf
             @method('put')
             <div class="form-group">
-                <label for="title">Nama</label>
-                <input type="text" class="form-control" value="{{$cast->nama}}" name="nama" id="title" placeholder="Masukkan Title">
-                @error('nama')
+                <label for="name">Name</label>
+                <input type="text" class="form-control" value="{{$user->name}}" name="name" id="name">
+                @error('name')
                     <div class="alert alert-danger">
                         {{ $message }}
                     </div>
                 @enderror
-                <label for="title">Umur</label>
-                <input type="text" class="form-control" value="{{$cast->umur}}" name="umur" id="title" placeholder="Masukkan Title">
-                @error('umur')
+                <label for="email">email</label>
+                <input type="text" class="form-control" value="{{$user->email}}" name="email" id="email">
+                @error('email')
                     <div class="alert alert-danger">
                         {{ $message }}
                     </div>
                 @enderror
-                <label for="title">Bio</label>
-                <input type="text" class="form-control" value="{{$cast->bio}}" name="bio" id="title" placeholder="Masukkan Title">
-                @error('bio')
+                <label for="password">Password</label>
+                <input type="password" class="form-control" value="{{$user->password}}" name="password" id="password">
+                @error('password')
                     <div class="alert alert-danger">
                         {{ $message }}
                     </div>

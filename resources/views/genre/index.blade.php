@@ -21,7 +21,7 @@
                     <td>{{$value->nama}}</td>
                     <td>
                         <form action="/genre/{{$value->id}}" method="POST">
-                            <a href="/genre/{{$value->id}}" class="btn btn-info">Show</a>
+                            {{-- <a href="/genre/{{$value->id}}" class="btn btn-info">Show</a> --}}
                             <a href="/genre/{{$value->id}}/edit" class="btn btn-primary">Edit</a>
                             @csrf
                             @method('DELETE')
