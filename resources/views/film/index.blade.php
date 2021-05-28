@@ -7,16 +7,17 @@
 @section('content')
     <a href="{{route('film.create')}}" class="btn btn-primary my-4">Tambah List Film</a>
     <div class="row">
-        @foreach ($film as $value)
+        @foreach ($film as $item)
         <div class="col-4">
-            <div class="card" style="width: 18rem;">
-                <img src="{{asset('img/'.$value->poster)}}" class="card-img-top" alt="...">
+            <div class="card">
+                <img src="{{asset('uploads/film/'.$item->poster)}}" class="card-img-top" height="400px" width="100px">
                 <div class="card-body">
-                  <h5 class="card-title">{{$value->judul}}</h5>
-                  <p class="card-text">{{$value->ringkasan}}</p>
-                  <form action="/film/{{$value->id}}" method="POST">
-                    <a href="/film/{{$value->id}}" class="btn btn-info">Show</a>
-                    <a href="/film/{{$value->id}}/edit" class="btn btn-primary">Edit</a>
+                  <h3 class="card-title text-bold mb-3">{{$item->judul}} ({{$item->tahun}})</h3>
+                  <span class="badge badge-primary">{{$item->genre->nama}}</span><br>
+                  <p class="card-text">{{Str::limit($item->ringkasan, 100)}}</p>
+                  <form action="/film/{{$item->id}}" method="POST" enctype="multipart/form-data">
+                    <a href="/film/{{$item->id}}" class="btn btn-info">Show</a>
+                    <a href="/film/{{$item->id}}/edit" class="btn btn-primary">Edit</a>
                     @csrf
                     @method('DELETE')
                     <input type="submit" class="btn btn-danger my-1" value="Delete">

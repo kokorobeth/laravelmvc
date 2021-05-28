@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\Profil;
-use App\User;
+use Auth;
 
 class ProfilController extends Controller
 {
@@ -17,15 +17,21 @@ class ProfilController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'umur' => 'required|unique:profil',
+            'umur' => 'required',
             'bio' => 'required',
             'alamat' => 'required'
         ]);
-        $query = DB::table('profil')->insert([
-            "umur" => $request["umur"],
-            "bio" => $request["bio"],
-            "alamat" => $request["alamat"],
-            "user_id" => $request["user_id"]
+        // $query = DB::table('profil')->insert([
+        //     "umur" => $request["umur"],
+        //     "bio" => $request["bio"],
+        //     "alamat" => $request["alamat"],
+        //     "user_id" => $request["user_id"]
+        // ]);
+        Profil::create([
+            'umur' => $request->umur,
+            'bio' => $request->bio,
+            'alamat' => $request->alamat,
+            'user_id' => Auth::user()->id
         ]);
         return redirect('/profil');
     }
@@ -33,7 +39,7 @@ class ProfilController extends Controller
     public function index()
     {
         // $profil = DB::table('profil')->get();
-        $profil = Profil::all();
+        $profil = Profil::where('user_id', Auth::user()->id)->first();
         return view('profil.index', compact('profil'));
     }
 
@@ -46,16 +52,23 @@ class ProfilController extends Controller
 
     public function edit($id)
     {
-        $profil = Profil::find($id);
-        return view('profil.edit', compact('profil'));
+        
     }
 
     public function update($id, Request $request) {
-        $profil = Profil::where('id',  $id)->update([
-            "umur" => $request['umur'],
-            "bio" => $request['bio'],
-            "alamat" => $request['alamat']
+        $this->validate($request, [
+            'umur' => 'required',
+            'bio' => 'required',
+            'alamat' => 'required'
         ]);
+        $profil_data = [
+            'umur' => $request->umur,
+            'bio' => $request->bio,
+            'alamat' => $request->alamat
+        ];
+
+        Profil::whereId($id)->update($profil_data);
+
         return redirect('/profil');
     }
 

@@ -11,6 +11,6 @@ class Film extends Model
     protected $fillable= ['judul', 'ringkasan', 'tahun', 'poster', 'genre_id']; 
 
     public function genre() {
-        return $this->hasMany('App\Genre');
+        return $this->belongsTo('App\Genre');
     }
 }

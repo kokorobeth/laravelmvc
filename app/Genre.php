@@ -10,6 +10,6 @@ class Genre extends Model
     protected $fillable= ['nama','genre_id']; 
 
     public function film() {
-        return $this->belongsTo('App\Film', 'genre_id');
+        return $this->hasMany('App\Film');
     }
 }

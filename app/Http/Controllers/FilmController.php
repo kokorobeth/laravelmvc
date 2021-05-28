@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Genre;
 use App\Film;
 use File;
+use App\Genre;
 
 class FilmController extends Controller
 {
@@ -36,7 +36,7 @@ class FilmController extends Controller
             'poster' => $name_img
         ]);
 
-        $gambar->move('img', $name_img);
+        $gambar->move('uploads/film', $name_img);
         return redirect('/film');
     }
 
@@ -83,7 +83,7 @@ class FilmController extends Controller
             File::delete($path . $film->poster);
             $gambar = $request->poster;
             $new_gambar = time() . ' - ' . $gambar->getClientOriginalName();
-            $gambar->move('img', $new_gambar);
+            $gambar->move('uploads/film', $new_gambar);
             $film_data = [
                 'judul' => $request->judul,
                 'ringkasan' => $request->ringkasan,
@@ -107,7 +107,7 @@ class FilmController extends Controller
         $film = Film::findorfail($id);
         $film->delete();
 
-        $path = "img/";
+        $path = "'uploads/film/";
         File::delete($path . $film->poster);
         return redirect()->route('film.index')->with('Success', 'Poster Berhasil dihapus');
     }

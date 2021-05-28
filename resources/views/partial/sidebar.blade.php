@@ -46,9 +46,34 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{route('logout')}}"
+            <a href="/genre" class="nav-link">
+              <i class="fas fa-film nav-icon"></i>
+              <p>Genre</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/film" class="nav-link">
+              <i class="fas fa-film nav-icon"></i>
+              <p>Film</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/cast" class="nav-link">
+              <i class="fas fa-user nav-icon"></i>
+              <p>Cast</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/profil" class="nav-link">
+              <i class="fas fa-user nav-icon"></i>
+              <p>Profil</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link bg-danger" href="{{route('logout')}}"
               onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">
+                <i class="fas fa-door-open nav-icon"></i>
                 {{ __('Logout') }}
             </a>
             <form id="logout-form" action="{{route('logout')}}" method="POST" style="display: none;">

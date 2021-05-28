@@ -11,6 +11,7 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">Nama</th>
+            <th scope="col">Film</th>
             <th scope="col">Actions</th>
         </tr>
         </thead>
@@ -19,6 +20,13 @@
                 <tr>
                     <td>{{$key + 1}}</th>
                     <td>{{$value->nama}}</td>
+                    <td>
+                        <ul>
+                            @foreach ($value->film as $item)
+                                <li>{{$item->judul}}</li>
+                            @endforeach
+                            </ul>
+                    </td>
                     <td>
                         <form action="/genre/{{$value->id}}" method="POST">
                             {{-- <a href="/genre/{{$value->id}}" class="btn btn-info">Show</a> --}}
