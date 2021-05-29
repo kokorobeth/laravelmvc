@@ -100,6 +100,11 @@ Route::group(['middleware' => ['auth']], function() {
     // Route::get('/cast/{cast_id}/edit', 'CastController@edit');
     // Route::put('/cast/{cast_id}', 'CastController@update');
     // Route::delete('/cast/{cast_id}', 'CastController@destroy');
+
+    //CRUD Peran
+    Route::resource('peran', 'PeranController');
+
+    
     Route::get('/home', 'HomeController@index')->name('home');
 });
 

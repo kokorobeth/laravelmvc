@@ -58,6 +58,12 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="/peran" class="nav-link">
+              <i class="fas fa-user nav-icon"></i>
+              <p>Peran</p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="/cast" class="nav-link">
               <i class="fas fa-user nav-icon"></i>
               <p>Cast</p>
